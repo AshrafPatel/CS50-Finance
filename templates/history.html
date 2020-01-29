@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+{% if show_table %}
+    <table width='1000' border-spacing='2px' style="margin:auto;padding:0,box-sizing:border-box,border-color:grey,text-align:left">
+        <tr>
+            <th>Type</th>
+            <th>Stock</th>
+            <th>Price</th>
+            <th>Amount</th>
+            <th>Date/Time</th>
+        </tr>
+        {% for h in user_history %}
+        <tr>
+            <td>{{h.type}}</td>
+            <td>{{h.symbol}}</td>
+            <td>{{h.purchase_price}}</td>
+            <td>{{h.quantity}}</td>
+            <td>{{h.timestamp}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <h5>No transactions found</h5>
+{% endif %}
+{% endblock %}

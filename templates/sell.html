@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sell Shares
+{% endblock %}
+
+{% block main %}
+    {% if display_shares %}
+    <form action="/sell" method="post" onsubmit="return chkSellForm()">
+        <div class="form-group">
+            <select name="share" class="form-select">
+                {% for share in user_shares %}
+                {% if share.quantity != 0 %}
+                    <option>{{share.symbol}}</option>
+                {% endif %}
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <input class="form-control" id="quantity" name="quantity" placeholder="Quantity" type="number" min="1" step="1">
+        </div>
+        <button class="btn btn-primary" type="submit">Sell</button>
+    </form>
+    {% else %}
+    <h5 class="quoted">You currently have no shares</h5>
+    {% endif %}
+{% endblock %}

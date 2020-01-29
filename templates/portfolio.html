@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Portfolio
+{% endblock %}
+
+{% block main %}
+    <table width='1000' border-spacing='2px' style="margin:auto,box-sizing:border-box,border-color:grey,text-align:left">
+        <tr>
+            <th>Symbol</th>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total</th>
+        </tr>
+        {% if show_table %}
+        {% for stock in user_shares %}
+        {% if stock.quantity != 0 %}
+        <tr>
+            <td>{{stock.symbol}}</td>
+            <td>{{stock.name}}</td>
+            <td class="mini-form">
+                <form action="/increase" method="POST">
+                    <input name="increase" type="hidden" value="{{stock.symbol}}">
+                    <button class="qty-btn">🡹</button>
+                </form>
+                    {{stock.quantity}}
+                <form action="/decrease" method="POST">
+                    <input name="decrease" type="hidden" value="{{stock.symbol}}">
+                    <button class="qty-btn">🡻</button>
+                </form>
+            </td>
+            <td>${{stock.current_price}}</td>
+            <td>${{stock.holdings}}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+        <tr style="background-color: #f0f0f0">
+            <td style="color: black"><i>CASH</i></td>
+            <td> </td>
+            <td> </td>
+            <td> </td>
+            <td style="color: black"><i>${{balance}}</i></td>
+        </tr>
+        <tr>
+            <td> </td>
+            <td> </td>
+            <td> </td>
+            <td> </td>
+            <td><b>${{grand_total}}</b></td>
+        </tr>
+    </table>
+{% endblock %}
