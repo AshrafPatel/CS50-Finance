@@ -40,7 +40,7 @@ Session(app)
 # Make sure API key is set
 if not os.environ.get("API_KEY"):
     try:
-        os.environ["API_KEY"] = 'pk_9caaffa935b843789f4326bdf1aaf868'
+        os.environ["API_KEY"]
     except:
         raise RuntimeError("API_KEY not set")
 
