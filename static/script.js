@@ -3,7 +3,7 @@ function chkUserForm() {
     let password = document.querySelector("#password").value
 
     let regex_username = /^[a-z0-9_-]{5,25}$/gm;
-    let regex_password = /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[a-zA-Z!#$%&? "])[a-zA-Z0-9!#$%&?]{8,20}$/gm;
+    let regex_password = /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[a-zA-Z!#$%&?])[a-zA-Z0-9!#$%&?]{8,20}$/gm;
 
     if (regex_username.test(username || username == null || username == "")) {
         alert("Username must be between 5-25 characters.")
